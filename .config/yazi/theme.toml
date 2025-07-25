@@ -1,0 +1,8 @@
+[flavor]
+dark  = "catppuccin-mocha"
+# light = "catppuccin-mocha"
+
+[icon]
+prepend_conds = [
+  { if = "dir", text = "" },
+]

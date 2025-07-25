@@ -1,0 +1,162 @@
+after-login-command = []
+
+after-startup-command = [
+  'exec-and-forget borders "active_color=gradient(top_left=0xff33ccff,bottom_right=0xffff99ee)" width=7.0',
+  'exec-and-forget sketchybar'
+]
+
+# Notify Sketchybar about workspace change
+exec-on-workspace-change = ['/bin/bash', '-c',
+    'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE'
+]
+
+start-at-login = false
+
+enable-normalization-flatten-containers = true
+enable-normalization-opposite-orientation-for-nested-containers = true
+
+accordion-padding = 42
+
+# Possible values: tiles|accordion
+default-root-container-layout = 'tiles'
+
+default-root-container-orientation = 'auto'
+
+on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+
+automatically-unhide-macos-hidden-apps = false
+
+# Possible values: (qwerty|dvorak)
+[key-mapping]
+    preset = 'qwerty'
+
+[gaps]
+    inner.horizontal = 10
+    inner.vertical =   10
+    outer.left =       10
+    outer.right =      10
+    outer.top =        [{ monitor.built-in = 10 }, 37]
+    outer.bottom =     10
+
+[mode.main.binding]
+    alt-slash = 'layout tiles horizontal vertical'
+    alt-comma = 'layout accordion horizontal vertical'
+
+    alt-h = 'focus left'
+    alt-j = 'focus down'
+    alt-k = 'focus up'
+    alt-l = 'focus right'
+
+    alt-shift-h = 'move left'
+    alt-shift-j = 'move down'
+    alt-shift-k = 'move up'
+    alt-shift-l = 'move right'
+
+    alt-minus = 'resize smart -50'
+    alt-equal = 'resize smart +50'
+
+    alt-1 = 'workspace 1'
+    alt-2 = 'workspace 2'
+    alt-3 = 'workspace 3'
+    alt-4 = 'workspace 4'
+    alt-d = 'workspace D' # Documents
+    alt-e = 'workspace E' # Entertainment
+
+    alt-shift-1 = 'move-node-to-workspace 1'
+    alt-shift-2 = 'move-node-to-workspace 2'
+    alt-shift-3 = 'move-node-to-workspace 3'
+    alt-shift-4 = 'move-node-to-workspace 4'
+    alt-shift-d = 'move-node-to-workspace D'
+    alt-shift-e = 'move-node-to-workspace E'
+
+    alt-tab = 'workspace-back-and-forth'
+    alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
+
+    alt-f = 'fullscreen'
+    alt-shift-f = 'layout floating tiling'
+
+    alt-shift-semicolon = 'mode service'
+
+# 'service' binding mode declaration.
+[mode.service.binding]
+    esc = ['reload-config', 'mode main']
+    r = ['flatten-workspace-tree', 'mode main'] # reset layout
+    f = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling layout
+    backspace = ['close-all-windows-but-current', 'mode main']
+
+    alt-shift-h = ['join-with left', 'mode main']
+    alt-shift-j = ['join-with down', 'mode main']
+    alt-shift-k = ['join-with up', 'mode main']
+    alt-shift-l = ['join-with right', 'mode main']
+
+[workspace-to-monitor-force-assignment]
+    E = 'built-in.*'
+
+# macOS Apps -- floating
+[[on-window-detected]]
+    if.app-id = 'com.apple.finder'
+    run = 'layout floating'
+
+[[on-window-detected]]
+    if.app-id = 'com.apple.calculator'
+    run = 'layout floating'
+
+[[on-window-detected]]
+    if.app-id = 'com.apple.QuickTimePlayerX'
+    run = 'layout floating'
+
+[[on-window-detected]]
+    if.app-id = 'com.apple.Dictionary'
+    run = 'layout floating'
+
+[[on-window-detected]]
+    if.app-name-regex-substring = 'camera'
+    run = 'layout floating'
+
+# workspace 4 -- miscs
+[[on-window-detected]]
+    if.app-id = 'com.apple.Safari'
+    run = ['layout floating', 'move-node-to-workspace 4']
+
+[[on-window-detected]]
+    if.app-id = 'com.apple.iCal'
+    run = ['layout floating', 'move-node-to-workspace 4']
+
+[[on-window-detected]]
+    if.app-id = 'com.apple.weather'
+    run = ['layout floating', 'move-node-to-workspace 4']
+
+[[on-window-detected]]
+    if.app-id = 'com.apple.iBooksX'
+    run = ['layout floating', 'move-node-to-workspace 4']
+
+[[on-window-detected]]
+    if.app-id = 'com.apple.mail'
+    run = ['layout floating', 'move-node-to-workspace 4']
+
+[[on-window-detected]]
+    if.app-id = 'io.github.clash-verge-rev.clash-verge-rev'
+    run = ['layout floating', 'move-node-to-workspace 4']
+
+# workspace E -- Built-in Retina Display
+# Comunication
+[[on-window-detected]]
+    if.app-id = 'com.tencent.qq'
+    run = ['layout floating', 'move-node-to-workspace E']
+
+[[on-window-detected]]
+    if.app-id = 'com.tencent.xinWeChat'
+    run = ['layout floating', 'move-node-to-workspace E']
+
+# Music
+[[on-window-detected]]
+    if.app-id = 'org.jeffvli.feishin'
+    run = ['layout floating', 'move-node-to-workspace E']
+
+[[on-window-detected]]
+    if.app-id = 'com.spotify.client'
+    run = ['layout floating', 'move-node-to-workspace E']
+
+[[on-window-detected]]
+    if.app-id = 'com.apple.Music'
+    run = ['layout floating', 'move-node-to-workspace E']

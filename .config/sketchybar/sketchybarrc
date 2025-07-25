@@ -1,0 +1,63 @@
+#!/bin/bash
+
+# Configuration directories
+CONFIG_DIR="$HOME/.config/sketchybar"
+PLUGIN_DIR="$CONFIG_DIR/plugins"
+ITEM_DIR="$CONFIG_DIR/items"
+
+# Loads all defined colors
+source "$CONFIG_DIR/colors.sh"
+
+# Font settings
+FONT_FACE="SF Pro"
+
+# Custom events
+SPOTIFY_EVENT="com.spotify.client.PlaybackStateChanged"
+
+# Bar Appearance (optimized with Macchiato theme)
+sketchybar --bar height=32 \
+    color=$BAR_COLOR \
+    blur_radius=20 \
+    padding_left=10 \
+    padding_right=10 \
+    notch_width=0 \
+    display="all" \
+    sticky=on
+
+# Default styling
+sketchybar --default \
+    icon.font="$FONT_FACE:Semibold:13.0" \
+    icon.color=$TEXT \
+    icon.y_offset=1 \
+    icon.padding_left=4 \
+    icon.padding_right=4 \
+    label.font="$FONT_FACE:Semibold:13.0" \
+    label.color=$TEXT \
+    label.y_offset=1 \
+    label.padding_left=3 \
+    label.padding_right=6 \
+    padding_left=3 \
+    padding_right=3 \
+    background.height=26 \
+    background.color=$ITEM_COLOR \
+    background.corner_radius=6 \
+    background.border_width=0
+
+# -- Left Side Items --
+source $ITEM_DIR/spaces.sh
+source $ITEM_DIR/front_app.sh
+
+# -- Center Items --
+# source $ITEM_DIR/music.sh
+
+# -- Right Side Items --
+source $ITEM_DIR/calendar.sh
+source $ITEM_DIR/battery.sh
+source $ITEM_DIR/volume.sh
+
+# Add Spotify event and item
+source $ITEM_DIR/spotify.sh
+
+##### Finalizing Setup #####
+# Force all scripts to run the first time
+sketchybar --update
