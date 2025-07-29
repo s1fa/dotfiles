@@ -50,6 +50,3 @@ alias typora="open -a typora"
 alias k="kitten"
 alias s="kitten ssh"
 alias icat="kitten icat"
-
-# APIs
-export GEMINI_API_KEY="AIzaSyAs1eiQ37LBrLAsxB0cPHAu098HKatzWBw"
